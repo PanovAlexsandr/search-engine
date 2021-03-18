@@ -16,7 +16,7 @@ while flag:
 
 
 
-    #запись всех файлов в список и в исключение не открывшихся
+    #запись всех файлов в список 
     r = open('search_files.txt', 'w')
     for x in spisok:
         r.write(x + '\n')
@@ -24,7 +24,7 @@ while flag:
 
 
 
-        #поиск слова
+    #поиск слова и в исключение не открывшихся
     with open('search_files.txt') as r:
         for line in r:
             sf = line[0:-1]
