@@ -14,7 +14,7 @@ while flag:
     choice = int(input('Select a formats: '))
     doc = ('.doc', '.docx')
     exl = ('.xls', '.xlsx')
-    full = ('.txt', '.pdf','.xls', '.xlsx','.doc', '.docx')
+    full = ('.txt', '.pdf') + doc + exl
 
     #search
     if choice == 1: 
