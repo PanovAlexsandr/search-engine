@@ -9,6 +9,7 @@ while flag:
     disk = input('Disk name : ')
     word = input('Input word : ')
     spisok = []
+    num = 0 
     t = ['1 = txt','2 = doc','3 = xls','4 = pdf','5 = all formats']
     print(*t, sep = '\n')
     choice = int(input('Select a formats: '))
@@ -59,15 +60,17 @@ while flag:
 
     #search by word
     with open('search_files.txt') as r:
+        
         with open('faind_file.txt', 'w') as faind_file:
             for line in r:
                 sf = line[0:-1]
-                f = open(sf) 
+                f = open(sf)
                 try:
                     if choice == 1 or choice == 5:
                         for line in f:
                             if word in line:                            
                                 faind_file.write(sf + '\n')
+                                num = 1
                 except Exception as fail:
                     with open('fail_file.txt', 'w') as f:
                         f.write(str(fail)+'\n')
@@ -77,12 +80,14 @@ while flag:
                 f = open(sf) 
                 try:    
                     if choice == 2 or choice == 5:
+                        
                         doc = docx.Document(sf)
                         text = []
                         for paragraph in doc.paragraphs:
                             text.append(paragraph.text)
                         if word in text:                            
                             faind_file.write(sf + '\n')
+                            num = 1
                 except Exception as fail:
                     with open('fail_file.txt', 'a+') as f:
                         f.write(str(fail)+'\n')
@@ -92,15 +97,16 @@ while flag:
                 f = open(sf) 
                 try:      
                     if choice == 3 or choice == 5:
+                        
                         path = sf
                         wb_obj = openpyxl.load_workbook(path)
                         sheet_obj = wb_obj.active
                         max_col = sheet_obj.max_column
                         for i in range(1, max_col + 1):
                             cell_obj = sheet_obj.cell(row = 1, column = i)
-                            print(cell_obj.value)
                             if word in cell_obj.value:                            
                                 faind_file.write(sf + '\n')
+                                num = 1
                 except Exception as fail:
                     with open('fail_file.txt', 'a+') as f:
                         f.write(str(fail)+'\n')
@@ -110,6 +116,7 @@ while flag:
                 f = open(sf) 
                 try:    
                     if choice == 4 or choice == 5:
+                        
                         pdf_file = open(sf, 'rb')
                         read_pdf = PyPDF2.PdfFileReader(pdf_file)
                         #number_of_pages = read_pdf.getNumPages()
@@ -117,6 +124,7 @@ while flag:
                         page_content = page.extractText()
                         if word in page_content:                            
                             faind_file.write(sf + '\n')
+                            num = 1
                         pdf_file.close()
 
 
@@ -128,7 +136,8 @@ while flag:
                     
 
     #open file
-    if os.path.exists("faind_file.txt") == True:
+    
+    if num == 1:
         faind_file = open('faind_file.txt')
 
         try:
@@ -152,6 +161,9 @@ while flag:
                                 subprocess.Popen('explorer ' + directory)
         finally:
             faind_file.close()
+
+    else: print('We not find file')
+
     flag = True if input(' start over? \n (y/n): ') == 'y' else False 
 os.remove('search_files.txt')
 os.remove('faind_file.txt')
