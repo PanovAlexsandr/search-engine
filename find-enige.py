@@ -3,11 +3,13 @@ import subprocess
 import docx
 import openpyxl
 import PyPDF2
+import re
 
 flag = True
 while flag:
     disk = input('Disk name : ')
     word = input('Input word : ')
+    accuracy = input('Do you want an exact match or not ?  \n (y/n): ')
     spisok = []
     num = 0 
     t = ['1 = txt','2 = doc','3 = xls','4 = pdf','5 = all formats']
@@ -68,9 +70,23 @@ while flag:
                 try:
                     if choice == 1 or choice == 5:
                         for line in f:
-                            if word in line:                            
-                                faind_file.write(sf + '\n')
-                                num = 1
+                            rgx = re.compile("(\w[\w']*\w|\w)")
+                            out=rgx.findall(line)
+                            if accuracy == 'n':
+                                if word in line:                            
+                                    faind_file.write(sf + '\n')
+                                    num = 1
+                            elif accuracy == 'y':
+                                a = ' '
+                                if a + word + a in line:                            
+                                        faind_file.write(sf + '\n')
+                                        num = 1
+                                elif out[0] == word:
+                                    faind_file.write(sf + '\n')
+                                    num = 1
+                                elif out[-1] == word:
+                                    faind_file.write(sf + '\n')
+                                    num = 1
                 except Exception as fail:
                     with open('fail_file.txt', 'w') as f:
                         f.write(str(fail)+'\n')
@@ -85,9 +101,24 @@ while flag:
                         text = []
                         for paragraph in doc.paragraphs:
                             text.append(paragraph.text)
-                        if word in text:                            
-                            faind_file.write(sf + '\n')
-                            num = 1
+                            for line in text:
+                                rgx = re.compile("(\w[\w']*\w|\w)")
+                                out=rgx.findall(line)
+                        if accuracy == 'n':
+                            if word in text:                            
+                                faind_file.write(sf + '\n')
+                                num = 1
+                        elif accuracy == 'y':
+                            a = ' '
+                            if a + word + a in text:                            
+                                faind_file.write(sf + '\n')
+                                num = 1  
+                            elif out[0] == word:
+                                    faind_file.write(sf + '\n')
+                                    num = 1
+                            elif out[-1] == word:
+                                faind_file.write(sf + '\n')
+                                num = 1  
                 except Exception as fail:
                     with open('fail_file.txt', 'a+') as f:
                         f.write(str(fail)+'\n')
@@ -97,16 +128,29 @@ while flag:
                 f = open(sf) 
                 try:      
                     if choice == 3 or choice == 5:
-                        
                         path = sf
                         wb_obj = openpyxl.load_workbook(path)
                         sheet_obj = wb_obj.active
                         max_col = sheet_obj.max_column
                         for i in range(1, max_col + 1):
                             cell_obj = sheet_obj.cell(row = 1, column = i)
-                            if word in cell_obj.value:                            
-                                faind_file.write(sf + '\n')
-                                num = 1
+                            rgx = re.compile("(\w[\w']*\w|\w)")
+                            out=rgx.findall(cell_obj.value)
+                            if accuracy == 'n':
+                                if word in cell_obj.value:                            
+                                    faind_file.write(sf + '\n')
+                                    num = 1
+                            elif accuracy == 'y':
+                                a = ' '
+                                if a + word + a in cell_obj.value:                            
+                                        faind_file.write(sf + '\n')
+                                        num = 1
+                                elif out[0] == word:
+                                    faind_file.write(sf + '\n')
+                                    num = 1
+                                elif out[-1] == word:
+                                    faind_file.write(sf + '\n')
+                                    num = 1  
                 except Exception as fail:
                     with open('fail_file.txt', 'a+') as f:
                         f.write(str(fail)+'\n')
@@ -122,9 +166,23 @@ while flag:
                         #number_of_pages = read_pdf.getNumPages()
                         page = read_pdf.getPage(0)
                         page_content = page.extractText()
-                        if word in page_content:                            
-                            faind_file.write(sf + '\n')
-                            num = 1
+                        rgx = re.compile("(\w[\w']*\w|\w)")
+                        out=rgx.findall(page_content)
+                        if accuracy == 'n':
+                            if word in page_content:                            
+                                faind_file.write(sf + '\n')
+                                num = 1
+                        elif accuracy == 'y':
+                            a = ' '
+                            if a + word + a in page_content:                            
+                                faind_file.write(sf + '\n')
+                                num = 1
+                            elif out[0] == word:
+                                faind_file.write(sf + '\n')
+                                num = 1
+                            elif out[-1] == word:
+                                faind_file.write(sf + '\n')
+                                num = 1
                         pdf_file.close()
 
 
