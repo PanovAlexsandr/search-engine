@@ -2,9 +2,9 @@ import os
 import subprocess
 import docx
 import openpyxl
-import PyPDF2
+import PyPDF2g
 import re
-import pathlib
+
 flag = True
 while flag:
     disk = input('Disk name : ')
@@ -59,7 +59,6 @@ while flag:
                             return open_file(path)
         
             elif choice == 2:
-                print(1)   
                 doc = docx.Document(path)
                 text = []
                 for paragraph in doc.paragraphs:
