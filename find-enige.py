@@ -4,18 +4,17 @@ import docx
 import openpyxl
 import PyPDF2
 import re
-
+import pathlib
 flag = True
 while flag:
     disk = input('Disk name : ')
     word = input('Input word : ')
     accuracy = input('Do you want an exact match or not ?  \n (y/n): ')
-    t = ['1 = txt','2 = doc','3 = xls','4 = pdf','5 = all formats']
+    t = ['1 = txt','2 = doc','3 = xls','4 = pdf']
     print(*t, sep = '\n')
     choice = int(input('Select a formats: '))
     doc = ('.doc', '.docx')
     exl = ('.xls', '.xlsx')
-    full = ('.txt', '.pdf') + doc + exl
 
     #search
     def search():
@@ -39,17 +38,11 @@ while flag:
                 for file in files:
                     if file.endswith('.pdf')  and '$' not in file:
                         yield os.path.join(adress, file)
-        else:
-            for adress, dirs, files in os.walk(disk):
-                for file in files:
-                    if file.endswith(full) and '$' not in file:
-                        yield os.path.join(adress, file)
 
     #read file and search by word
     def read_file(path):
         with open(path) as r:
-            
-            if choice == 1 or choice == 5:
+            if choice == 1:
                 for line in r:
                     if accuracy == 'n':
                         if word in line:                           
@@ -65,8 +58,8 @@ while flag:
                         elif out[-1] == word:
                             return open_file(path)
         
-            elif choice == 2 or choice == 5:   
-                print("1111")
+            elif choice == 2:
+                print(1)   
                 doc = docx.Document(path)
                 text = []
                 for paragraph in doc.paragraphs:
@@ -86,7 +79,7 @@ while flag:
                     elif out[-1] == word:
                         return open_file(path)
 
-            if choice == 3 or choice == 5:
+            elif choice == 3:
                 wb_obj = openpyxl.load_workbook(path)
                 sheet_obj = wb_obj.active
                 max_col = sheet_obj.max_column
@@ -100,13 +93,13 @@ while flag:
                     elif accuracy == 'y':
                         a = ' '
                         if a + word + a in cell_obj.value:                            
-                                return open_file(path)
+                            return open_file(path)
                         elif out[0] == word:
                             return open_file(path)
                         elif out[-1] == word:
                             return open_file(path)
 
-            if choice == 4 or choice == 5:
+            elif choice == 4:
                 pdf_file = open(path, 'rb')
                 read_pdf = PyPDF2.PdfFileReader(pdf_file)
                 page = read_pdf.getPage(0)
@@ -136,6 +129,7 @@ while flag:
             directory = new_line
             subprocess.Popen('explorer ' + directory)
 
+
     for line in search():
         try:
             read_file(line)
@@ -144,3 +138,5 @@ while flag:
                         r.write(str(fail)+'\n')
     
     flag = True if input(' start over? \n (y/n): ') == 'y' else False 
+if os.path.exists("fail_file.txt") == True:
+    os.remove('fail_file.txt')
