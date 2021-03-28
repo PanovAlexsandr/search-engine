@@ -2,7 +2,7 @@ import os
 import subprocess
 import docx
 import openpyxl
-import PyPDF2g
+import PyPDF2
 import re
 
 flag = True
