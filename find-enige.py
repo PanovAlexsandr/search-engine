@@ -150,4 +150,3 @@ class search_word:
         #delete fail
         if os.path.exists("fail_file.txt") == True:
             os.remove('fail_file.txt')
-search_word().search('D:\\', 'all', 'hel')
