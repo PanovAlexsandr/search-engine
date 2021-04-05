@@ -27,7 +27,7 @@ class search_word:
         a = 'all'
         
 
-        #1 <=> search fails with format 
+        #1 <=> search fails with format for txt
         if format_files == t or format_files == a: 
             for adress, dirs, files in os.walk(disk):
                 for file in files:
@@ -45,8 +45,9 @@ class search_word:
                     except Exception as fail:
                         with open('fail_file.txt', 'w') as r:
                             r.write(str(fail)+'\n')  
-        
-            #4 <=> open file 
+            #4 deleting identical paths
+            self.find_file1 = list(set(self.find_file1)) 
+            #5 <=> open file 
             for x in self.find_file1:
                 file_name = x                    
                 print('We faind faile, her path: ', file_name)
@@ -56,7 +57,7 @@ class search_word:
                     subprocess.Popen('explorer ' + directory)
                 
       
-        #1
+        #1 for docx
         if format_files == d or format_files == a: 
             for adress, dirs, files in os.walk(disk):
                 for file in files:
@@ -78,7 +79,9 @@ class search_word:
                     except Exception as fail:
                         with open('fail_file.txt', 'w') as r:
                             r.write(str(fail)+'\n')  
-            #4    
+            #4
+            self.find_file2 = list(set(self.find_file2)) 
+            #5    
             for x in self.find_file2:
                 file_name = x
                 print('We faind faile, her path: ', file_name)
@@ -88,7 +91,7 @@ class search_word:
                     subprocess.Popen('explorer ' + directory)
 
 
-        #1
+        #1 for exel
         if format_files == e or format_files == a: 
             for adress, dirs, files in os.walk(disk):
                 for file in files:
@@ -112,6 +115,8 @@ class search_word:
                         with open('fail_file.txt', 'w') as r:
                             r.write(str(fail)+'\n') 
             #4
+            self.find_file3 = list(set(self.find_file3)) 
+            #5
             for x in self.find_file3:
                 file_name = x
                 print('We faind faile, her path: ', file_name)
@@ -121,7 +126,7 @@ class search_word:
                     subprocess.Popen('explorer ' + directory)
 
 
-        #1
+        #1 for pdf
         if format_files == p or format_files == a: 
             for adress, dirs, files in os.walk(disk):
                 for file in files:
@@ -144,6 +149,8 @@ class search_word:
                         with open('fail_file.txt', 'w') as r:
                             r.write(str(fail)+'\n')  
             #4
+            self.find_file4 = list(set(self.find_file4)) 
+            #5
             for x in self.find_file4:
                 file_name = x
                 print('We faind faile, her path: ', file_name)
