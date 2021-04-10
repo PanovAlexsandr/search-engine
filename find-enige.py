@@ -5,6 +5,7 @@ import openpyxl
 import PyPDF2
 
 
+
 class search_word:
 
     spisok_file1 = []
@@ -41,13 +42,12 @@ class search_word:
                         for line in r:
                             if word in line:   
                                 self.find_file1.append(x)  
+                                break
                     #3 <=> adding unopened files to exceptions
                     except Exception as fail:
                         with open('fail_file.txt', 'w') as r:
                             r.write(str(fail)+'\n')  
-            #4 deleting identical paths
-            self.find_file1 = list(set(self.find_file1)) 
-            #5 <=> open file 
+            #4 <=> open file 
             for x in self.find_file1:
                 file_name = x                    
                 print('We faind faile, her path: ', file_name)
@@ -75,13 +75,12 @@ class search_word:
                         for line in text:
                             if word in line:                        
                                 self.find_file2.append(x)
+                                break
                     #3
                     except Exception as fail:
                         with open('fail_file.txt', 'w') as r:
                             r.write(str(fail)+'\n')  
-            #4
-            self.find_file2 = list(set(self.find_file2)) 
-            #5    
+            #4   
             for x in self.find_file2:
                 file_name = x
                 print('We faind faile, her path: ', file_name)
@@ -110,13 +109,12 @@ class search_word:
                             cell_obj = sheet_obj.cell(row = 1, column = i)
                             if word in cell_obj.value:                            
                                 self.find_file3.append(x)
+                                break
                     #3                                
                     except Exception as fail:
                         with open('fail_file.txt', 'w') as r:
                             r.write(str(fail)+'\n') 
             #4
-            self.find_file3 = list(set(self.find_file3)) 
-            #5
             for x in self.find_file3:
                 file_name = x
                 print('We faind faile, her path: ', file_name)
@@ -143,14 +141,13 @@ class search_word:
                         page_content = page.extractText()
                         if word in page_content:                            
                             self.find_file4.append(x)
+                            break
                         pdf_file.close()
                     #3
                     except Exception as fail:
                         with open('fail_file.txt', 'w') as r:
                             r.write(str(fail)+'\n')  
             #4
-            self.find_file4 = list(set(self.find_file4)) 
-            #5
             for x in self.find_file4:
                 file_name = x
                 print('We faind faile, her path: ', file_name)
