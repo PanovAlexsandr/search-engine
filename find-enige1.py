@@ -5,7 +5,6 @@ import openpyxl
 import PyPDF2
 
 
-
 class search_word:
 
     spisok_file1 = []
@@ -49,13 +48,15 @@ class search_word:
                     except Exception as fail:
                         self.exc.append(r) 
             #4 <=> open file 
-            for x in self.find_file1:
-                file_name = x                    
-                print('We faind faile, her path: ', file_name)
-                want_open = input('Open file ? \n (y/n): ')
-                if want_open == 'y':
-                    directory = file_name
-                    subprocess.Popen('explorer ' + directory)
+            if len(self.find_file1) == 0:
+                print('We did not find the words in the format txt')
+            else:
+                for x in self.find_file1:
+                    head, tail = os.path.split(x)
+                    print('We faind faile:', tail)
+                    want_open = input('Open file? \n (y/n): ')
+                    if want_open == 'y':
+                        subprocess.Popen('explorer ' + x)
                 
       
         #1 for docx
@@ -81,13 +82,15 @@ class search_word:
                     except Exception as fail:
                         self.exc.append(r)
             #4   
-            for x in self.find_file2:
-                file_name = x
-                print('We faind faile, her path: ', file_name)
-                want_open = input('Open file ? \n (y/n): ')
-                if want_open == 'y':
-                    directory = file_name
-                    subprocess.Popen('explorer ' + directory)
+            if len(self.find_file2) == 0:
+                print('We did not find the words in the format doc')
+            else:
+                for x in self.find_file2:
+                    head, tail = os.path.split(x)
+                    print('We faind faile:', tail)
+                    want_open = input('Open file? \n (y/n): ')
+                    if want_open == 'y':
+                        subprocess.Popen('explorer ' + x)
 
 
         #1 for exel
@@ -114,13 +117,15 @@ class search_word:
                     except Exception as fail:
                         self.exc.append(r) 
             #4
-            for x in self.find_file3:
-                file_name = x
-                print('We faind faile, her path: ', file_name)
-                want_open = input('Open file ? \n (y/n): ')
-                if want_open == 'y':
-                    directory = file_name
-                    subprocess.Popen('explorer ' + directory)
+            if len(self.find_file3) == 0:
+                print('We did not find the words in the format exl')
+            else:
+                for x in self.find_file3:
+                    head, tail = os.path.split(x)
+                    print('We faind faile:', tail)
+                    want_open = input('Open file? \n (y/n): ')
+                    if want_open == 'y':
+                        subprocess.Popen('explorer ' + x)
 
 
         #1 for pdf
@@ -146,10 +151,12 @@ class search_word:
                     except Exception as fail:
                         self.exc.append(r) 
             #4
-            for x in self.find_file4:
-                file_name = x
-                print('We faind faile, her path: ', file_name)
-                want_open = input('Open file ? \n (y/n): ')
-                if want_open == 'y':
-                    directory = file_name
-                    subprocess.Popen('explorer ' + directory)
+            if len(self.find_file4) == 0:
+                print('We did not find the words in the format pdf')
+            else:
+                for x in self.find_file4:
+                    head, tail = os.path.split(x)
+                    print('We faind faile:', tail)
+                    want_open = input('Open file? \n (y/n): ')
+                    if want_open == 'y':
+                        subprocess.Popen('explorer ' + x)
