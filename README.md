@@ -12,7 +12,7 @@ pip install find_enige <br/>
 ## How to use <a name="htu"></a>
 1. Add to your code:
 ```python 
-from DoubleLinkedList import DLinked
+from find_enige import search_word
 ```  
 <br/>
 
