@@ -1,24 +1,21 @@
 import setuptools
-
-with open("README.md", "r", encoding="utf-8") as fh:
-    long_description = fh.read()
+with open(r'D:\Семестр 2\find_enigew\README.md', 'r', encoding='utf-8') as fh:
+	long_description = fh.read()
 
 setuptools.setup(
-    name="find_enige", 
-    version="1.1",
-    author="Panov Alexsandr",
-    author_email="aleksandr.panov2000@yandex.ru",
-    description="This package is find enige by word",
-    long_description=long_description,
-    long_description_content_type="text/markdown",
-    url="https://github.com/PanovAlexsandr",
-    classifiers=[
-        "Programming Language :: Python :: 3",
-        "License :: OSI Approved :: MIT License",
-        "Operating System :: OS Independent",
-    ],
-    package_dir={"": "src"},
-    packages=setuptools.find_packages(where="src"),
-    python_requires=">=3.0",
-    install_requires=['python-docx','openpyxl','PyPDF2']
+	name='find_enigew',
+	version='1.1',
+	author='Alexsus',
+	author_email='aleksandr.panov2000@yandex.ru',
+	description='search by word',
+	long_description=long_description,
+	long_description_content_type='text/markdown',
+	url='https://github.com/PanovAlexsandr',
+	packages=['find_enigew'],
+	classifiers=[
+		"Programming Language :: Python :: 3",
+		"License :: OSI Approved :: MIT License",
+		"Operating System :: OS Independent",
+	],
+	python_requires='>=3.6',
 )

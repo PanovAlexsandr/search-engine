@@ -14,16 +14,14 @@ class search_word:
     exc = []
 
     #the main function for finding words in files
-    def search(self, disk, format_files, word):     
-           
-        #search fails with format for txt
+    def search(self, disk, format_files, word):           
+        #txt
         if format_files == 'txt' or format_files == 'all': 
             for adress, dirs, files in os.walk(disk + ':\\'):   
                 for file in files:
                     s = (os.path.join(adress, file))
                     if file.endswith('.txt') and '$' not in s:
                         self.spisok_file.append(s)
-            #search for a word
             for x in self.spisok_file: 
                 with open(x) as r:
                     try:
@@ -39,7 +37,7 @@ class search_word:
             for adress, dirs, files in os.walk(disk + ':\\'):
                 for file in files:
                     s = (os.path.join(adress, file))
-                    if file.endswith ('docx') or file.endswith('doc') and '$' not in s:
+                    if file.endswith ('.docx') or file.endswith('.doc') and '$' not in s:
                         self.spisok_file.append(s)     
             for x in self.spisok_file: 
                 with open(x) as r:
@@ -60,7 +58,7 @@ class search_word:
             for adress, dirs, files in os.walk(disk + ':\\'):
                 for file in files:
                     s = (os.path.join(adress, file))
-                    if file.endswith('exl') or file.endswith('exls') and '$' not in s:
+                    if file.endswith('.xls') or file.endswith('.xlsx') and '$' not in s:
                         self.spisok_file.append(s)
             for x in self.spisok_file: 
                 with open(x) as r:
@@ -121,6 +119,7 @@ class search_word:
                         subprocess.Popen('explorer ' + x)
                 elif opp != '':
                     subprocess.Popen('explorer ' + x)
+
     #copying found files
     def copying(self, path_copy = '', numcopy = 'a'):
         if len(self.find_file) == 0:

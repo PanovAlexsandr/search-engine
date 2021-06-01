@@ -1,5 +1,5 @@
-import unittest, os
-from find_enige import search_word
+import unittest
+from find_enigew import search_word
 
 path = 'D:\\test.txt'
 file = open(path, 'w')

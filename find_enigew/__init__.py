@@ -37,7 +37,7 @@ class search_word:
             for adress, dirs, files in os.walk(disk + ':\\'):
                 for file in files:
                     s = (os.path.join(adress, file))
-                    if file.endswith ('docx') or file.endswith('doc') and '$' not in s:
+                    if file.endswith ('.docx') or file.endswith('.doc') and '$' not in s:
                         self.spisok_file.append(s)     
             for x in self.spisok_file: 
                 with open(x) as r:
@@ -58,7 +58,7 @@ class search_word:
             for adress, dirs, files in os.walk(disk + ':\\'):
                 for file in files:
                     s = (os.path.join(adress, file))
-                    if file.endswith('exl') or file.endswith('exls') and '$' not in s:
+                    if file.endswith('.xls') or file.endswith('.xlsx') and '$' not in s:
                         self.spisok_file.append(s)
             for x in self.spisok_file: 
                 with open(x) as r:

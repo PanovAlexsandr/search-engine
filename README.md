@@ -7,12 +7,12 @@
 2. [How to use](#htu)
 
 ## Installation <a name="installation"></a>
-pip install find_enige <br/>
+pip install find_enigew <br/>
 
 ## How to use <a name="htu"></a>
 1. Add to your code:
 ```python 
-from find_enige import search_word
+from find_enigew import search_word
 ```  
 <br/>
 
@@ -65,6 +65,8 @@ a.copying('Disk:\\path')
 ## Example <a name="installation"></a>
 
 ```python
+from find_enigew import search_word
+
 a = search_word()
 a.search('D', 'txt','word')
 a.copying('E:\\d')
