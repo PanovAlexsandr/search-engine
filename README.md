@@ -24,7 +24,7 @@ a.search('disk','format','word')
 <br/>
 Where the:<br/>
 
-disk parameter is entered as the disk name (```'D', 'C', ...```)<br/>
+disk parameter is entered as the disk name ```('D', 'C', ...)```<br/>
 format parameter is entered as the format in which the file is written:<br/>
 
 ```'txt'``` - text format<br/> 
@@ -32,7 +32,7 @@ format parameter is entered as the format in which the file is written:<br/>
 ```'exl'``` - table file format exel<br/>
 ```'pdf'``` - Portable Document Format<br/>
 ```'all'``` - if you want to search in all formats at once<br/>
-parameter word:
+parameter word:<br/>
 ```'word'``` - the search word<br/>
 
 3. If you want to get a list of paths with all the files found, then use the construction:<br/>
@@ -42,7 +42,8 @@ a.search('D', 'all','hello')
 a.list()
 ```  
 <br/>
-If you want to open the found files use the construction:<br/>
+
+4. If you want to open the found files use the construction:<br/>
 
 ```python 
 a = search_word()
@@ -52,7 +53,7 @@ a.opening()
 By default, you can choose whether to open the file or not, but you can add any parameter and all files will open at once (example: ```a.opening('x')```
 <br/>
 
-4. If you want to copy the file, then you just need to enter the command:<br/>
+5. If you want to copy the file, then you just need to enter the command:<br/>
 
 ```python 
 a = search_word()
@@ -65,7 +66,7 @@ a.copying('Disk:\\path')
 
 ```python
 a = search_word()
-a.search('D', 'all','hello')
+a.search('D', 'txt','word')
 a.copying('E:\\d')
 a.opening()
 a.list() 
