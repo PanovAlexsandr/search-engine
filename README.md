@@ -24,15 +24,15 @@ a.search('disk','format','word')
 <br/>
 Where the:<br/>
 
-disk parameter is entered as the disk name ```('D', 'C', ...)```<br/>
-format parameter is entered as the format in which the file is written:<br/>
+```disk``` parameter is entered as the disk name ```('D', 'C', ...)```<br/>
+format ```parameter``` is entered as the format in which the file is written:<br/>
 
 ```'txt'``` - text format<br/> 
 ```'doc'``` - word document format<br/> 
 ```'exl'``` - table file format exel<br/>
 ```'pdf'``` - Portable Document Format<br/>
 ```'all'``` - if you want to search in all formats at once<br/>
-parameter word:<br/>
+parameter ```word```:<br/>
 ```'word'``` - the search word<br/>
 
 3. If you want to get a list of paths with all the files found, then use the construction:<br/>
