@@ -1,5 +1,5 @@
 
-# Find enige 1.1
+# find_word 1.2
 
 ### Table of Contents
 
@@ -7,12 +7,12 @@
 2. [How to use](#htu)
 
 ## Installation <a name="installation"></a>
-pip install find_enigew <br/>
+pip install find_word <br/>
 
 ## How to use <a name="htu"></a>
 1. Add to your code:
 ```python 
-from find_enigew import search_word
+from find_word import search_word
 ```  
 <br/>
 
@@ -65,7 +65,7 @@ a.copying('Disk:\\path')
 ## Example <a name="installation"></a>
 
 ```python
-from find_enigew import search_word
+from find_word import search_word
 
 a = search_word()
 a.search('D', 'txt','word')
