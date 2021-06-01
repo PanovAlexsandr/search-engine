@@ -25,6 +25,7 @@ a.search('disk','format','word')
 Where the:<br/>
 disk parameter is entered as the disk name (```'D', 'C', ...```)<br/>
 format parameter is entered as the format in which the file is written:<br/>
+
 ```'txt'``` - text format<br/> 
 ```'doc'``` - word document format<br/> 
 ```'exl'``` - table file format exel<br/>
@@ -46,7 +47,7 @@ a = search_word()
 a.search('D', 'all','hello')
 a.opening()
 ```  
-By default, you can choose whether to open the file or not, but you can add any parameter and all files will open at once (example: ```a.opening(' ')```
+By default, you can choose whether to open the file or not, but you can add any parameter and all files will open at once (example: ```a.opening('x')```
 <br/>
 
 4. If you want to copy the file, then you just need to enter the command:<br/>
