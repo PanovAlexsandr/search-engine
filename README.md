@@ -46,7 +46,6 @@ a = search_word()
 a.search('D', 'all','hello')
 a.opening()
 ```  
-<br/>
 By default, you can choose whether to open the file or not, but you can add any parameter and all files will open at once (example: ```a.opening(' ')```
 <br/>
 
