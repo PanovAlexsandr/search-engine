@@ -11,13 +11,11 @@ class search_word:
     #lists for collecting information
     find_file = []
     spisok_file = []
+    exc = []
 
     #the main function for finding words in files
-    def search(self, disk, format_files, word):
-
-        #additional variables
-        exc = []
-        
+    def search(self, disk, format_files, word):     
+           
         #search fails with format for txt
         if format_files == 'txt' or format_files == 'all': 
             for adress, dirs, files in os.walk(disk + ':\\'):   
@@ -34,7 +32,7 @@ class search_word:
                                 self.find_file.append(x)  
                                 break
                     except Exception as fail:
-                        exc.append(r) 
+                        self.exc.append(r) 
 
         #docx
         if format_files == 'doc' or format_files == 'all': 
@@ -55,7 +53,7 @@ class search_word:
                                 self.find_file.append(x)
                                 break
                     except Exception as fail:
-                        exc.append(r)   
+                        self.exc.append(r)   
 
         #exel
         if format_files == 'exl' or format_files == 'all': 
@@ -78,7 +76,7 @@ class search_word:
                                 self.find_file.append(x)
                                 break          
                     except Exception as fail:
-                        exc.append(r) 
+                        self.exc.append(r) 
 
         #pdf
         if format_files == 'pdf' or format_files == 'all': 
@@ -100,7 +98,7 @@ class search_word:
                             break
                         pdf_file.close()
                     except Exception as fail:
-                        exc.append(r) 
+                        self.exc.append(r) 
 
     #list of found files
     def list(self):
@@ -142,4 +140,4 @@ class search_word:
                         shutil.copy(x,path_copy)
                         print('File:', tail, 'was copied')
             except Exception as fail:
-                print('A directory with this name already exists')
+                print('A directory with this name already exists') 
