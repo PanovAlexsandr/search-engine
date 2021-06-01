@@ -25,7 +25,7 @@ a.search('disk','format','word')
 Where the:<br/>
 
 ```disk``` parameter is entered as the disk name ```('D', 'C', ...)```<br/>
-format ```parameter``` is entered as the format in which the file is written:<br/>
+```format```parameter is entered as the format in which the file is written:<br/>
 
 ```'txt'``` - text format<br/> 
 ```'doc'``` - word document format<br/> 
