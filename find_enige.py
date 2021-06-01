@@ -8,25 +8,19 @@ import warnings
 
 class search_word:
 
+    #lists for collecting information
     find_file = []
     spisok_file = []
 
-    #path indication feature
+    #the main function for finding words in files
     def search(self, disk, format_files, word):
 
-        #additional parameters
+        #additional variables
         exc = []
-        doc = ('.doc', '.docx')
-        exl = ('.xls', '.xlsx')
-        t = 'txt'
-        d = 'doc'
-        e = 'exl'        
-        p = 'pdf'
-        a = 'all'
-
+        
         #search fails with format for txt
-        if format_files == t or format_files == a: 
-            for adress, dirs, files in os.walk(disk):
+        if format_files == 'txt' or format_files == 'all': 
+            for adress, dirs, files in os.walk(disk + ':\\'):   
                 for file in files:
                     s = (os.path.join(adress, file))
                     if file.endswith('.txt') and '$' not in s:
@@ -42,14 +36,13 @@ class search_word:
                     except Exception as fail:
                         exc.append(r) 
 
-        #search fails with format for docx
-        if format_files == d or format_files == a: 
-            for adress, dirs, files in os.walk(disk):
+        #docx
+        if format_files == 'doc' or format_files == 'all': 
+            for adress, dirs, files in os.walk(disk + ':\\'):
                 for file in files:
                     s = (os.path.join(adress, file))
-                    if file.endswith(doc) and '$' not in s:
+                    if file.endswith ('docx') or file.endswith('doc') and '$' not in s:
                         self.spisok_file.append(s)     
-            #search for a word
             for x in self.spisok_file: 
                 with open(x) as r:
                     try:
@@ -64,14 +57,13 @@ class search_word:
                     except Exception as fail:
                         exc.append(r)   
 
-        #search fails with format for exel
-        if format_files == e or format_files == a: 
-            for adress, dirs, files in os.walk(disk):
+        #exel
+        if format_files == 'exl' or format_files == 'all': 
+            for adress, dirs, files in os.walk(disk + ':\\'):
                 for file in files:
                     s = (os.path.join(adress, file))
-                    if file.endswith(exl) and '$' not in s:
+                    if file.endswith('exl') or file.endswith('exls') and '$' not in s:
                         self.spisok_file.append(s)
-            #search for a word
             for x in self.spisok_file: 
                 with open(x) as r:
                     try:
@@ -88,14 +80,13 @@ class search_word:
                     except Exception as fail:
                         exc.append(r) 
 
-        #search fails with format for pdf
-        if format_files == p or format_files == a: 
-            for adress, dirs, files in os.walk(disk):
+        #pdf
+        if format_files == 'pdf' or format_files == 'all': 
+            for adress, dirs, files in os.walk(disk + ':\\'):
                 for file in files:
                     s = (os.path.join(adress, file))
                     if file.endswith('.pdf') and '$' not in s:
                         self.spisok_file.append(s)
-            #search for a word
             for x in self.spisok_file: 
                 with open(x) as r:
                     try:
@@ -111,13 +102,6 @@ class search_word:
                     except Exception as fail:
                         exc.append(r) 
 
-    #displaying a list of found files
-    def path_file(self):
-        if len(self.find_file) == 0:
-            print('We did not find the words in files')
-        else:
-            print(",\n".join(map(str, self.find_file)))
-
     #list of found files
     def list(self):
         if len(self.find_file) == 0:
@@ -125,18 +109,20 @@ class search_word:
         else:
             return self.find_file
 
-    #file opening function
-    def opening(self):    
+    #file opening
+    def opening(self,opp = ''):    
         if len(self.find_file) == 0:
             print('We did not find the words in files')
         else:
             for x in self.find_file:
                 head, tail = os.path.split(x)
-                print('We faind faile:', tail)
-                want_open = input('Open file? \n (y/n): ')
-                if want_open == 'y':
+                if opp == '':
+                    print('We faind faile:', tail)
+                    want_open = input('Open file? \n (y/n): ')
+                    if want_open == 'y':
+                        subprocess.Popen('explorer ' + x)
+                elif opp != '':
                     subprocess.Popen('explorer ' + x)
-        
     #copying found files
     def copying(self, path_copy = '', numcopy = 'a'):
         if len(self.find_file) == 0:
@@ -157,4 +143,8 @@ class search_word:
                         print('File:', tail, 'was copied')
             except Exception as fail:
                 print('A directory with this name already exists') 
-        
+a = search_word()
+a.search('D', 'all','hello')
+#a.copying('E:\\d')
+#a.opening()
+print(a.list()) 
