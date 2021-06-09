@@ -60,7 +60,9 @@ a = search_word()
 a.search('D', 'all','hello')
 a.copying('Disk:\\path')
 ```  
-
+Where in the function you write the path of copying files and add a new directory ```a.copying('D:\\copying_file')```<br/>
+(you can only copy files to a new directory)
+<br/>
 
 ## Example <a name="installation"></a>
 

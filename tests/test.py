@@ -8,7 +8,7 @@ file.close()
 
 class TestSearch_word(unittest.TestCase):
     a = search_word()
-    a.search('D:\\', 'txt','hello')
+    a.search('D', 'txt','hello')
     def test_list(self):
         b = self.a.list() 
         b = ''.join(b)
